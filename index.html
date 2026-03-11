@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ModusAccelero — Future Shapers</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0e8;
+    --amber: #e8a020;
+    --amber-light: #f5c050;
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --pink: #e8547a;
+    --gray: #2a2a2a;
+    --mid-gray: #444;
+
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #0a0a0a;
+    color: #f5f0e8;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--amber); }
+
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    text-decoration: none;
+    color: rgba(245,240,232,0.55);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--amber); }
+
+  .nav-cta {
+    background: var(--amber);
+    color: var(--black) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--amber-light) !important; color: var(--black) !important; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,160,32,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(82,183,136,0.05) 0%, transparent 60%);
+  }
+
+  .hero-grid-lines {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(245,240,232,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,240,232,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-left { position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid rgba(232,160,32,0.4);
+    padding: 0.35rem 1rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 7vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  h1 em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--amber);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.55);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1rem;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: var(--black);
+    padding: 0.9rem 2.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--amber-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    border: 1px solid rgba(245,240,232,0.08);
+    color: #f5f0e8;
+    padding: 0.9rem 2.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex; justify-content: flex-end;
+    animation: fadeIn 1.2s 0.3s ease both;
+  }
+
+  .hero-stat-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: rgba(245,240,232,0.08);
+    border: 1px solid rgba(245,240,232,0.08);
+    width: 380px;
+  }
+
+  .stat-item {
+    background: #2a2a2a;
+    padding: 2rem 1.8rem;
+    transition: background 0.3s;
+  }
+  .stat-item:hover { background: #333; }
+
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+  }
+
+  /* ─── VISION STRIP ─── */
+  .vision-strip {
+    background: var(--amber);
+    color: var(--black);
+    padding: 1.2rem 4rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ticker {
+    display: flex;
+    gap: 4rem;
+    animation: ticker 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+  }
+
+  .ticker-dot {
+    color: rgba(0,0,0,0.4);
+    font-size: 1.2rem;
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── PROGRAMS ─── */
+  #programs {
+    padding: 7rem 4rem;
+    position: relative;
+    background: #0a0a0a;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .section-title em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .section-sub {
+    color: rgba(245,240,232,0.55);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 4rem;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5px;
+    background: rgba(245,240,232,0.08);
+  }
+
+  .program-card {
+    background: #0a0a0a;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-top: 3px solid transparent;
+  }
+
+  .program-card:hover { background: #2a2a2a; }
+  .program-card.green { border-top-color: var(--green-light); }
+  .program-card.amber { border-top-color: var(--amber); }
+  .program-card.pink { border-top-color: var(--pink); }
+
+  .program-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(245,240,232,0.05);
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    line-height: 1;
+    transition: color 0.3s;
+  }
+  .program-card:hover .program-number { color: rgba(245,240,232,0.08); }
+
+  .program-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .program-icon.green { background: rgba(82,183,136,0.15); }
+  .program-icon.amber { background: rgba(232,160,32,0.15); }
+  .program-icon.pink  { background: rgba(232,84,122,0.15); }
+
+  .program-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.8rem;
+    line-height: 1.15;
+  }
+
+  .program-card p {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .program-items {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .program-items li {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.55);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .program-items li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--amber);
+    opacity: 0.6;
+  }
+
+  /* ─── AUDIENCE SPLIT ─── */
+  #audience {
+    padding: 7rem 4rem;
+    background: #2a2a2a;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .audience-visual {
+    position: relative;
+    height: 420px;
+  }
+
+  .audience-box {
+    position: absolute;
+    background: #0a0a0a;
+    border: 1px solid rgba(245,240,232,0.08);
+    padding: 1.5rem 1.8rem;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .audience-box:hover { transform: translateY(-4px); border-color: var(--amber); }
+
+  .audience-box.senior {
+    top: 0; left: 0;
+    width: 55%;
+    border-top: 3px solid var(--green-light);
+  }
+  .audience-box.mid {
+    top: 35%; right: 0;
+    width: 58%;
+    border-top: 3px solid var(--amber);
+  }
+  .audience-box.exec {
+    bottom: 0; left: 10%;
+    width: 50%;
+    border-top: 3px solid var(--pink);
+  }
+
+  .audience-box .box-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.55);
+    margin-bottom: 0.4rem;
+  }
+
+  .audience-box h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+
+  .audience-box p {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.5;
+  }
+
+  /* ─── APPROACH ─── */
+  #approach {
+    padding: 7rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+
+  .approach-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(82,183,136,0.05) 0%, transparent 70%);
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 6rem;
+    align-items: start;
+    position: relative; z-index: 1;
+  }
+
+  .steps {
+    display: flex; flex-direction: column; gap: 0;
+    margin-top: 2rem;
+  }
+
+  .step {
+    display: flex; gap: 1.5rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+    cursor: pointer;
+    transition: padding-left 0.2s;
+  }
+  .step:hover { padding-left: 0.5rem; }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: rgba(245,240,232,0.15);
+    min-width: 2.5rem;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .step:hover .step-num { color: var(--amber); }
+
+  .step-content h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+
+  .step-content p {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.65;
+  }
+
+  .approach-quote {
+    background: #2a2a2a;
+    padding: 3rem;
+    border-left: 4px solid var(--amber);
+    position: relative;
+  }
+
+  .approach-quote blockquote {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.55;
+    color: #f5f0e8;
+    margin-bottom: 2rem;
+  }
+
+  .approach-quote cite {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.55);
+    font-style: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .approach-programs-mini {
+    margin-top: 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+
+  .mini-prog {
+    background: #0a0a0a;
+    padding: 1.2rem;
+    border: 1px solid rgba(245,240,232,0.06);
+    transition: border-color 0.2s;
+  }
+  .mini-prog:hover { border-color: var(--amber); }
+
+  .mini-prog .mp-label {
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .mini-prog .mp-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  /* ─── CTA SECTION ─── */
+  #cta {
+    background: var(--amber);
+    padding: 7rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  #cta h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    color: var(--black);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+  }
+
+  #cta h2 em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    display: block;
+    color: rgba(10,10,10,0.6);
+  }
+
+  .cta-form {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .form-row { display: flex; gap: 1rem; }
+
+  .cta-form input, .cta-form select, .cta-form textarea {
+    background: rgba(10,10,10,0.15);
+    border: 1px solid rgba(10,10,10,0.2);
+    color: var(--black);
+    padding: 0.9rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .cta-form input::placeholder, .cta-form textarea::placeholder { color: rgba(10,10,10,0.4); }
+  .cta-form input:focus, .cta-form textarea:focus { border-color: var(--black); }
+
+  .cta-form textarea { height: 90px; resize: none; }
+
+  .btn-dark {
+    background: var(--black);
+    color: var(--white);
+    padding: 1rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none; cursor: pointer;
+    align-self: flex-start;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-dark:hover { background: var(--gray); transform: translateY(-2px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050505;
+    padding: 3rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    border-top: 1px solid rgba(245,240,232,0.08);
+  }
+
+  footer .logo { font-size: 1.3rem; display: block; margin-bottom: 0.6rem; }
+
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.7;
+  }
+
+  .footer-col h5 {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.55);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a {
+    text-decoration: none;
+    color: rgba(245,240,232,0.55);
+    font-size: 0.82rem;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--amber); }
+
+  .footer-bottom {
+    background: #050505;
+    padding: 1.5rem 4rem;
+    border-top: 1px solid rgba(245,240,232,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom p { font-size: 0.75rem; color: rgba(245,240,232,0.55); }
+  .footer-bottom a { color: var(--amber); text-decoration: none; }
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: #f5f0e8;
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ─── MOBILE MENU OVERLAY ─── */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.4rem; }
+
+    .hamburger { display: flex; }
+
+    .nav-links {
+      position: fixed !important;
+      top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+      width: 100vw !important; height: 100vh !important;
+      background: #0a0a0a !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0 !important;
+      z-index: 150 !important;
+      transform: translateY(-100%) !important;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1) !important;
+      display: flex !important;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .nav-links.open {
+      transform: translateY(0) !important;
+      visibility: visible !important;
+      pointer-events: all !important;
+    }
+    .nav-links li {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(245,240,232,0.07);
+    }
+    .nav-links li:first-child {
+      border-top: 1px solid rgba(245,240,232,0.07);
+    }
+    .nav-links li a {
+      display: block !important;
+      padding: 1.4rem 2rem !important;
+      font-size: 1rem !important;
+      letter-spacing: 0.15em !important;
+      color: rgba(245,240,232,0.8) !important;
+      text-transform: uppercase !important;
+      font-weight: 500 !important;
+    }
+    .nav-links li a:hover,
+    .nav-links li a:active { color: var(--amber) !important; background: rgba(232,160,32,0.06) !important; }
+    .nav-links .nav-cta {
+      background: var(--amber) !important;
+      color: #0a0a0a !important;
+      margin: 1.5rem 2rem 0 !important;
+      border-radius: 2px !important;
+      display: block !important;
+      padding: 1rem 2rem !important;
+      font-size: 0.9rem !important;
+    }
+
+    #hero {
+      grid-template-columns: 1fr;
+      padding: 6rem 1.4rem 3rem;
+      min-height: 100svh;
+    }
+    .hero-right { display: none; }
+    h1 { font-size: clamp(3rem, 14vw, 5rem); }
+    .hero-sub { font-size: 0.95rem; max-width: 100%; }
+    .hero-ctas { flex-direction: column; gap: 0.8rem; }
+    .btn-primary, .btn-ghost { text-align: center; width: 100%; padding: 1rem; }
+
+    #programs { padding: 4rem 1.4rem; }
+    .programs-grid { grid-template-columns: 1fr; gap: 1px; }
+    .program-card { padding: 2rem 1.4rem; }
+
+    #audience { grid-template-columns: 1fr; padding: 4rem 1.4rem; gap: 2rem; }
+    .audience-visual { display: none; }
+    .audience-text { text-align: left; }
+
+    #approach { padding: 4rem 1.4rem; }
+    .approach-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .approach-quote { padding: 2rem 1.4rem; }
+    .approach-programs-mini { grid-template-columns: 1fr 1fr; }
+
+    #cta {
+      grid-template-columns: 1fr;
+      padding: 4rem 1.4rem;
+      gap: 2rem;
+    }
+    #cta h2 { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+    .form-row { flex-direction: column; gap: 0.8rem; }
+
+    footer { grid-template-columns: 1fr; padding: 3rem 1.4rem; gap: 2rem; }
+    .footer-bottom { padding: 1.2rem 1.4rem; flex-direction: column; gap: 0.4rem; text-align: center; }
+
+    .section-title { font-size: clamp(2rem, 8vw, 3rem); }
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: clamp(2.8rem, 13vw, 4rem); }
+    .hero-tag { font-size: 0.65rem; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .approach-programs-mini { grid-template-columns: 1fr; }
+    .stat-label { font-size: 0.7rem; }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    nav { padding: 1.2rem 2rem; }
+    #hero { grid-template-columns: 1fr; padding: 7rem 2.5rem 4rem; }
+    .hero-right { display: none; }
+    .programs-grid { grid-template-columns: 1fr 1fr; }
+    #audience { grid-template-columns: 1fr; padding: 5rem 2.5rem; }
+    .audience-visual { display: none; }
+    .approach-grid { grid-template-columns: 1fr; gap: 3rem; }
+    #cta { grid-template-columns: 1fr; padding: 5rem 2.5rem; }
+    footer { grid-template-columns: 1fr 1fr; padding: 3rem 2.5rem; }
+    .footer-bottom { padding: 1.5rem 2.5rem; }
+    #programs, #approach { padding: 5rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo" onclick="goTo('hero');return false;">Modus<span>Accelero</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#programs" onclick="goTo('programs');closeMenu();return false;">Programs</a></li>
+    <li><a href="#audience" onclick="goTo('audience');closeMenu();return false;">Who We Serve</a></li>
+    <li><a href="#approach" onclick="goTo('approach');closeMenu();return false;">Approach</a></li>
+    <li><a href="#cta" class="nav-cta" onclick="goTo('cta');closeMenu();return false;">Get Started</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-left">
+    <div class="hero-tag">Corporate Leadership & Development</div>
+    <h1>Shape the<br><em>Leaders of</em>Tomorrow.</h1>
+    <p class="hero-sub">ModusAccelero transforms your people into Future Shapers — equipping corporates and businesses with the skills, behaviours, and mindset to thrive and conquer.</p>
+    <div class="hero-ctas">
+      <a href="#programs" class="btn-primary" onclick="goTo('programs');return false;">Explore Programs</a>
+      <a href="#cta" class="btn-ghost" onclick="goTo('cta');return false;">Book a Discovery Call</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-block">
+      <div class="stat-item">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Learning Tracks</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Skill Workshops</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">2D–3D</div>
+        <div class="stat-label">Immersive Programs</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Bespoke Delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="vision-strip">
+  <div class="ticker">
+    <span>Leadership Development</span><span class="ticker-dot">◆</span>
+    <span>Business Simulation</span><span class="ticker-dot">◆</span>
+    <span>Essential Skills</span><span class="ticker-dot">◆</span>
+    <span>Talent Programs</span><span class="ticker-dot">◆</span>
+    <span>Executive Coaching</span><span class="ticker-dot">◆</span>
+    <span>Future Shapers</span><span class="ticker-dot">◆</span>
+    <span>Leadership Development</span><span class="ticker-dot">◆</span>
+    <span>Business Simulation</span><span class="ticker-dot">◆</span>
+    <span>Essential Skills</span><span class="ticker-dot">◆</span>
+    <span>Talent Programs</span><span class="ticker-dot">◆</span>
+    <span>Executive Coaching</span><span class="ticker-dot">◆</span>
+    <span>Future Shapers</span><span class="ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="section-label">What We Offer</div>
+  <h2 class="section-title reveal">Five Tracks.<br><em>One Ecosystem.</em></h2>
+  <p class="section-sub reveal">Every program is built for corporates who want real transformation — not just training days.</p>
+
+  <div class="programs-grid reveal">
+
+    <div class="program-card green">
+      <div class="program-number">01</div>
+      <div class="program-icon green"></div>
+      <h3>Leadership &amp; Management Development</h3>
+      <p>Multi-day immersive programs for managers and leaders at every level.</p>
+      <ul class="program-items">
+        <li>Manager Development Program (2D)</li>
+        <li>Leader Development Program (2D)</li>
+        <li>Manager &amp; Leader Development Program (3D)</li>
+        <li>Leader of Leaders (2D)</li>
+      </ul>
+    </div>
+
+    <div class="program-card amber">
+      <div class="program-number">02</div>
+      <div class="program-icon amber"></div>
+      <h3>Essential Skills Workshops</h3>
+      <p>Targeted 90–120 min sessions covering the skills that move the needle.</p>
+      <ul class="program-items">
+        <li>Giving &amp; Receiving Feedback</li>
+        <li>Negotiations &amp; Influence</li>
+        <li>Peer Coaching</li>
+        <li>Leading Change</li>
+        <li>Strategic Thinking</li>
+        <li>+ 5 more workshops</li>
+      </ul>
+    </div>
+
+    <div class="program-card green">
+      <div class="program-number">03</div>
+      <div class="program-icon green"></div>
+      <h3>Business Simulation</h3>
+      <p>Experiential learning tailored to complexity and seniority.</p>
+      <ul class="program-items">
+        <li>Senior Leaders — Collaboration, Influence &amp; Decision Making</li>
+        <li>Mid-Level Managers — Communication, Collaboration &amp; Performance</li>
+      </ul>
+    </div>
+
+    <div class="program-card amber">
+      <div class="program-number">04</div>
+      <div class="program-icon amber"></div>
+      <h3>Talent Program <br>(Cohort)</h3>
+      <p>Blended virtual + in-person learning journeys for high-potential cohorts.</p>
+      <ul class="program-items">
+        <li>Senior Leaders — 6 virtual sessions (2hrs) + 3 in-person (2 days each)</li>
+        <li>Mid-Level Managers — same blended structure</li>
+      </ul>
+    </div>
+
+    <div class="program-card pink">
+      <div class="program-number">05</div>
+      <div class="program-icon pink"></div>
+      <h3>Executive &amp; Breakthrough Coaching</h3>
+      <p>Premium 1:1 coaching for executives driving transformational change.</p>
+      <ul class="program-items">
+        <li>Bespoke executive coaching engagements</li>
+        <li>Breakthrough frameworks for senior leaders</li>
+        <li>Coming soon — inquire for details</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section id="audience">
+  <div class="audience-visual">
+    <div class="audience-box senior">
+      <div class="box-label">Track A</div>
+      <h4>Senior Leaders</h4>
+      <p>High-complexity simulations. Cohort journeys. Executive coaching.</p>
+    </div>
+    <div class="audience-box mid">
+      <div class="box-label">Track B</div>
+      <h4>Mid-Level Managers</h4>
+      <p>Medium-complexity development. Essential skills. Blended programs.</p>
+    </div>
+    <div class="audience-box exec">
+      <div class="box-label">Track C</div>
+      <h4>Emerging Leaders</h4>
+      <p>Foundation programs. Leadership skills. Manager development.</p>
+    </div>
+  </div>
+
+  <div class="audience-text reveal">
+    <div class="section-label">Who We Serve</div>
+    <h2 class="section-title">Built for<br><em>Corporates &amp;</em><br>Businesses.</h2>
+    <p class="section-sub">We partner with organisations that are serious about building leadership capability — from first-time managers to C-suite executives. Our programs meet people where they are and accelerate where they need to go.</p>
+    <a href="#cta" class="btn-primary" onclick="goTo('cta');return false;">Start the Conversation</a>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="approach-bg"></div>
+  <div class="approach-grid">
+    <div class="reveal">
+      <div class="section-label">Our Approach</div>
+      <h2 class="section-title">How We<br><em>Work.</em></h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Discover</h4>
+            <p>We start with a deep discovery session to understand your organisation, your people, and where the real development gaps are.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Design</h4>
+            <p>We build a bespoke learning pathway — pulling from our five tracks and tailoring everything to your context and culture.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Deliver</h4>
+            <p>Expert facilitation, virtual and in-person. We create experiences that stick — not just sessions people forget by Monday.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Develop</h4>
+            <p>We measure impact, gather feedback, and work with you to sustain behavioural change long after the program ends.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="approach-quote">
+        <blockquote>"The goal isn't just better managers. It's people who shape the future of your business."</blockquote>
+        <cite>— ModusAccelero Vision</cite>
+        <div class="approach-programs-mini">
+          <div class="mini-prog">
+            <div class="mp-label">Track 01</div>
+            <div class="mp-title">Leadership &amp; Management Development</div>
+          </div>
+          <div class="mini-prog">
+            <div class="mp-label">Track 02</div>
+            <div class="mp-title">Essential Skills Workshops</div>
+          </div>
+          <div class="mini-prog">
+            <div class="mp-label">Track 03</div>
+            <div class="mp-title">Business Simulation</div>
+          </div>
+          <div class="mini-prog">
+            <div class="mp-label">Track 04</div>
+            <div class="mp-title">Talent Cohort Program</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div>
+    <h2>Ready to Build<br><em>Future Shapers?</em></h2>
+  </div>
+
+  <div id="enquiryForm" style="display:flex;flex-direction:column;gap:1rem;">
+    <div class="form-row">
+      <div class="field-wrap">
+        <input type="text" id="fieldName" placeholder="Your Name">
+        <span class="field-error" id="errName">Please enter your name</span>
+      </div>
+      <div class="field-wrap">
+        <input type="text" id="fieldCompany" placeholder="Company Name">
+        <span class="field-error" id="errCompany">Please enter your company</span>
+      </div>
+    </div>
+    <div class="field-wrap">
+      <input type="email" id="fieldEmail" placeholder="Work Email">
+      <span class="field-error" id="errEmail">Please enter a valid email</span>
+    </div>
+    <div class="field-wrap">
+      <select id="fieldInterest" style="background:rgba(10,10,10,0.15);border:1px solid rgba(10,10,10,0.2);color:rgba(10,10,10,0.7);padding:0.9rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;width:100%;outline:none;appearance:none;">
+        <option value="">What are you interested in?</option>
+        <option>Leadership &amp; Management Development</option>
+        <option>Essential Skills Workshops</option>
+        <option>Business Simulation</option>
+        <option>Talent Cohort Program</option>
+        <option>Executive Coaching</option>
+        <option>Full L&amp;D Partnership</option>
+      </select>
+      <span class="field-error" id="errInterest">Please select a program</span>
+    </div>
+    <div class="field-wrap">
+      <textarea id="fieldMessage" placeholder="Tell us about your team and what you're trying to achieve..." style="height:90px;resize:none;background:rgba(10,10,10,0.15);border:1px solid rgba(10,10,10,0.2);color:#0a0a0a;padding:0.9rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;width:100%;outline:none;"></textarea>
+      <span class="field-error" id="errMessage">Please add a message</span>
+    </div>
+    <button class="btn-dark" onclick="submitEnquiry()">Send Enquiry &rarr;</button>
+  </div>
+
+  <div id="successMsg" style="display:none;flex-direction:column;justify-content:center;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--black);letter-spacing:0.04em;line-height:1;margin-bottom:0.8rem;">Enquiry Received.</div>
+    <p style="color:rgba(10,10,10,0.65);font-size:0.95rem;line-height:1.75;margin-bottom:2rem;">We'll be in touch within 1 business day to schedule your discovery call.</p>
+    <button class="btn-dark" onclick="resetForm()">Submit Another &rarr;</button>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#" class="logo">Modus<span style="color:var(--amber)">Accelero</span></a>
+    <p>Transforming corporates and businesses into ecosystems of Future Shapers.</p>
+  </div>
+  <div class="footer-col">
+    <h5>Programs</h5>
+    <ul>
+      <li><a href="#programs" onclick="goTo('programs');return false;">Leadership & Management</a></li>
+      <li><a href="#programs" onclick="goTo('programs');return false;">Essential Skills</a></li>
+      <li><a href="#programs" onclick="goTo('programs');return false;">Business Simulation</a></li>
+      <li><a href="#programs" onclick="goTo('programs');return false;">Talent Cohort Program</a></li>
+      <li><a href="#programs" onclick="goTo('programs');return false;">Executive Coaching</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Company</h5>
+    <ul>
+      <li><a href="#approach" onclick="goTo('approach');return false;">Our Approach</a></li>
+      <li><a href="#audience" onclick="goTo('audience');return false;">Who We Serve</a></li>
+      <li><a href="#cta" onclick="goTo('cta');return false;">Contact Us</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <p>© 2025 ModusAccelero. All rights reserved.</p>
+  <p>Built to <a href="#">accelerate growth.</a></p>
+</div>
+
+<style>
+  .field-wrap { position: relative; width: 100%; }
+  .field-wrap input, .field-wrap textarea {
+    background: rgba(10,10,10,0.15);
+    border: 1px solid rgba(10,10,10,0.2);
+    color: var(--black);
+    padding: 0.9rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    width: 100%; outline: none;
+    transition: border-color 0.2s;
+  }
+  .field-wrap input::placeholder, .field-wrap textarea::placeholder { color: rgba(10,10,10,0.4); }
+  .field-wrap input.invalid, .field-wrap textarea.invalid,
+  .field-wrap select.invalid { border-color: #c0392b !important; }
+  .field-error {
+    display: none;
+    font-size: 0.72rem;
+    color: #c0392b;
+    margin-top: 0.3rem;
+    font-weight: 500;
+  }
+  .field-error.show { display: block; }
+  .form-row .field-wrap { flex: 1; }
+</style>
+
+<script>
+
+  // ─── THEME TOGGLE ───
+  function toggleTheme() {
+    const isLight = document.documentElement.classList.toggle('light');
+    const icon = document.querySelector('.theme-icon');
+    icon.innerHTML = isLight ? '&#9788;' : '&#9790;';
+    localStorage.setItem('ma-theme', isLight ? 'light' : 'dark');
+  }
+
+  // Restore saved theme
+  (function() {
+    const saved = localStorage.getItem('ma-theme');
+    if (saved === 'light') {
+      document.documentElement.classList.add('light');
+      const icon = document.querySelector('.theme-icon');
+      if (icon) icon.innerHTML = '&#9788;';
+    }
+  })();
+
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.remove('open');
+    btn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close menu on outside click
+  document.addEventListener('click', function(e) {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  function goTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  ['fieldName','fieldCompany','fieldEmail','fieldMessage'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => clearErr(id));
+  });
+  const selEl = document.getElementById('fieldInterest');
+  if (selEl) selEl.addEventListener('change', () => clearErr('fieldInterest'));
+
+  const errMap = { fieldName:'errName', fieldCompany:'errCompany', fieldEmail:'errEmail', fieldInterest:'errInterest', fieldMessage:'errMessage' };
+  function clearErr(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('invalid');
+    const err = document.getElementById(errMap[id]);
+    if (err) err.classList.remove('show');
+  }
+  function showErr(fid, eid) {
+    document.getElementById(fid).classList.add('invalid');
+    document.getElementById(eid).classList.add('show');
+  }
+  function submitEnquiry() {
+    let valid = true;
+    const name    = document.getElementById('fieldName').value.trim();
+    const company = document.getElementById('fieldCompany').value.trim();
+    const email   = document.getElementById('fieldEmail').value.trim();
+    const interest= document.getElementById('fieldInterest').value;
+    const message = document.getElementById('fieldMessage').value.trim();
+    const rx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!name)         { showErr('fieldName','errName'); valid=false; }
+    if (!company)      { showErr('fieldCompany','errCompany'); valid=false; }
+    if (!rx.test(email)) { showErr('fieldEmail','errEmail'); valid=false; }
+    if (!interest)     { showErr('fieldInterest','errInterest'); valid=false; }
+    if (!message)      { showErr('fieldMessage','errMessage'); valid=false; }
+    if (!valid) return;
+    document.getElementById('enquiryForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'flex';
+  }
+  function resetForm() {
+    ['fieldName','fieldCompany','fieldEmail','fieldMessage'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.value=''; el.classList.remove('invalid'); }
+    });
+    document.getElementById('fieldInterest').value = '';
+    document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
+    document.getElementById('successMsg').style.display = 'none';
+    document.getElementById('enquiryForm').style.display = 'flex';
+  }
+</script>
+
+</body>
+</html>
